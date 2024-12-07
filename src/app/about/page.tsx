@@ -6,9 +6,10 @@ import remarkGfm from 'remark-gfm';
 import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import Layout from '../layout';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 
 export default async function Portofolio() {
-  const content = fs.readFileSync('src/app/portfolio/portfolio.md', 'utf8');
+  const content = fs.readFileSync('src/app/about/about.md', 'utf8');
 
   return (
     <Layout>
@@ -23,6 +24,7 @@ export default async function Portofolio() {
           </ReactMarkdown>
         </article>
       </main>
+      <Footer />
     </Layout>
   );
 }

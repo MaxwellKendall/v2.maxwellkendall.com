@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { links } from '@/lib/links';
 
 export const Navigation = () => {
   return (
@@ -17,28 +18,56 @@ export const Navigation = () => {
         <ul className="flex items-center gap-8">
           <li>
             <Link
-              href="/portfolio"
+              href="/about"
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
-              Portfolio
+              About
             </Link>
           </li>
           <li>
             <a
               target="_blank"
-              href="https://maxwell-kendall-resume.s3.amazonaws.com/MAXWELL_KENDALL_Resume.PDF"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              href={links.resume}
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
             >
               Resume
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
             </a>
           </li>
           <li>
             <a
               target="_blank"
-              href="https://linktr.ee/maxwellkendall"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              href={links.email}
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
             >
               Contact
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
             </a>
           </li>
         </ul>

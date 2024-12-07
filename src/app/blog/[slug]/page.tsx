@@ -7,7 +7,7 @@ import Layout from '../../layout';
 import { getPostBySlug } from '../../../lib/blog-utils';
 import { notFound } from 'next/navigation';
 import { Navigation } from '../../components/Navigation';
-
+import { Footer } from '../../components/Footer';
 export default async function BlogPost({
   params,
 }: {
@@ -36,6 +36,7 @@ export default async function BlogPost({
           </ReactMarkdown>
         </article>
       </main>
+      <Footer />
     </Layout>
   );
 }

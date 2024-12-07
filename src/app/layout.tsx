@@ -1,6 +1,5 @@
 import './globals.css';
 import 'highlight.js/styles/github-dark.css';
-import { Navigation } from './components/Navigation';
 
 export const metadata = {
   title: 'Blog App',
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen">{children}</body>
     </html>
   );
 }
