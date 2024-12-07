@@ -47,25 +47,30 @@ export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
               key={post.slug}
               className="border rounded-lg p-4 hover:bg-gray-50"
             >
-              <Link href={`/blog/${post.slug}`}>
-                <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-                {post.description && (
-                  <p className="text-gray-700 mb-2">{post.description}</p>
-                )}
+              <div>
+                <Link href={`/blog/${post.slug}`}>
+                  <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                  {post.description && (
+                    <p className="text-gray-700 mb-2">{post.description}</p>
+                  )}
+                </Link>
                 <div className="flex gap-2 mb-2">
                   {post.tags
                     .filter((tag) => tag !== 'public')
                     .map((tag) => (
-                      <span
+                      <button
                         key={tag}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 text-sm rounded-full"
+                        onClick={() => setSearchTerm(tag)}
+                        className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm rounded-full cursor-pointer transition-colors"
                       >
                         {tag}
-                      </span>
+                      </button>
                     ))}
-                  <p className="text-gray-600">{post.date}</p>
                 </div>
-              </Link>
+                <Link href={`/blog/${post.slug}`}>
+                  <p className="text-gray-600">{post.date}</p>
+                </Link>
+              </div>
             </article>
           ))}
       </div>
