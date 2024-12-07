@@ -1,7 +1,7 @@
 ---
 title: The Anatomy of a Function
 tags: public, cs fundamentals
-
+slug: anatomy-of-a-function
 date: '2020-04-25'
 ---
 

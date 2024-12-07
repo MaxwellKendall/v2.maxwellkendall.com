@@ -1,7 +1,7 @@
 ---
-title: Dynamic Programming
+title: Dynamic Programmingzzzz
 tags: public, fundamentals
-
+slug: dynamic-programming
 date: '2023-01-04'
 ---
 
@@ -20,7 +20,6 @@ We can visualize the time complexity as a tree data structure where the initial 
                     2()      5()
                    /   \     /  \
                  3()   4() 6()  7()
-
 
 This tree represents exponential time complexity where the recursive call is made inside of a loop. In such a case case, the exponent will be the height of the tree and the base will be the maximum number of children for each node.
 

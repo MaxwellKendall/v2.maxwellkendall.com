@@ -1,7 +1,7 @@
 ---
 title: Binary Search
 tags: cs fundamentals
-
+slug: binary-search-overview
 date: '2022-05-31'
 ---
 

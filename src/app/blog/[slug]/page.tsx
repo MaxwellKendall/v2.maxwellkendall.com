@@ -1,34 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import Layout from '../../layout';
-
-const POSTS_DIRECTORY = 'src/blog-posts';
-
-async function getBlogPost(slug: string) {
-  const postsDirectory = path.join(process.cwd(), POSTS_DIRECTORY);
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-
-  const { data: frontmatter, content } = matter(fileContents);
-
-  return {
-    frontmatter,
-    content,
-  };
-}
+import { getPostBySlug } from '../../../lib/blog-utils';
+import { notFound } from 'next/navigation';
 
 export default async function BlogPost({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { frontmatter, content } = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) {
+    notFound();
+  }
+
+  const { post: frontmatter, content } = post;
 
   return (
     <Layout>

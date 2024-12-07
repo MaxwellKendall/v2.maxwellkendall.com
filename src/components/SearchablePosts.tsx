@@ -1,10 +1,19 @@
 'use client';
+import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { BlogPostCard } from '../app/page';
 
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchablePostsContent posts={posts} />
+    </Suspense>
+  );
+}
+
+function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('q') || '';

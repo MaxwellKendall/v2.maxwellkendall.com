@@ -1,8 +1,8 @@
 ---
 title: Binary Search Algorithim
 # tags: public, cs fundamentals
-tags: functional-programming
-
+tags: functional-programming, public
+slug: functional-programming
 date: '2022-05-03'
 ---
 

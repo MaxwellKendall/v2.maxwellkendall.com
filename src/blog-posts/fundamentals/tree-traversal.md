@@ -1,7 +1,6 @@
 ---
 title: Tree Traversal
 tags: public, fundamentals
-
 date: '2022-08-19'
 ---
 

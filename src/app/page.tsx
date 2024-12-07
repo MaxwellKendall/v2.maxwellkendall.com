@@ -9,8 +9,7 @@ export interface BlogPostCard {
   title: string;
   tags: string[];
   date: string;
-  description: string;
-  category: string;
+  description?: string; // should be required
 }
 
 const POSTS_DIRECTORY = 'src/blog-posts';
@@ -37,6 +36,9 @@ function getBlogPosts(): BlogPostCard[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data: frontmatter } = matter(fileContents);
       const tags = frontmatter.tags.split(',');
+      if (!frontmatter.slug) {
+        frontmatter.slug = fileName.replace(/\.md$/, '');
+      }
 
       // Add the category to the post data
       posts.push({
