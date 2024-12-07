@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import type { BlogPostCard } from '../app/page';
+import type { BlogPostCard } from '../page';
 
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
   return (

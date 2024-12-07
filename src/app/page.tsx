@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Layout from './layout';
-import SearchablePosts from '@/components/SearchablePosts';
+import SearchablePosts from './components/SearchablePosts';
+import Navigation from './components/Navigation';
 
 export interface BlogPostCard {
   slug: string;
@@ -58,6 +59,7 @@ export default function Home() {
 
   return (
     <Layout>
+      <Navigation />
       <main className="max-w-4xl mx-auto py-8 px-4">
         <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
         <SearchablePosts posts={posts} />

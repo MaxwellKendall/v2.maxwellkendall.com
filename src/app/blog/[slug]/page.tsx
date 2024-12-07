@@ -6,6 +6,7 @@ import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import Layout from '../../layout';
 import { getPostBySlug } from '../../../lib/blog-utils';
 import { notFound } from 'next/navigation';
+import { Navigation } from '../../components/Navigation';
 
 export default async function BlogPost({
   params,
@@ -22,6 +23,7 @@ export default async function BlogPost({
 
   return (
     <Layout>
+      <Navigation />
       <main className="max-w-4xl mx-auto py-8 px-4">
         <article className="prose lg:prose-xl">
           <h1>{frontmatter.title}</h1>
