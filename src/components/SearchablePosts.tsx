@@ -52,7 +52,19 @@ export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
                 {post.description && (
                   <p className="text-gray-700 mb-2">{post.description}</p>
                 )}
-                <p className="text-gray-600">{post.date}</p>
+                <div className="flex gap-2 mb-2">
+                  {post.tags
+                    .filter((tag) => tag !== 'public')
+                    .map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 bg-gray-100 text-gray-600 text-sm rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  <p className="text-gray-600">{post.date}</p>
+                </div>
               </Link>
             </article>
           ))}
