@@ -8,8 +8,10 @@ import remarkGfm from 'remark-gfm';
 import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import Layout from '../../layout';
 
+const POSTS_DIRECTORY = 'src/blog-posts';
+
 async function getBlogPost(slug: string) {
-  const postsDirectory = path.join(process.cwd(), 'src/posts');
+  const postsDirectory = path.join(process.cwd(), POSTS_DIRECTORY);
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
