@@ -1,11 +1,28 @@
 'use client';
-import { useState } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { BlogPostCard } from '../app/page';
 
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSearch = searchParams.get('q') || '';
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const searchLower = searchTerm.toLowerCase();
+
+  // Update URL when search term changes
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    if (searchTerm) {
+      params.set('q', searchTerm);
+    } else {
+      params.delete('q');
+    }
+
+    // Update the URL without refreshing the page
+    router.push(`?${params.toString()}`, { scroll: false });
+  }, [searchTerm, router, searchParams]);
 
   return (
     <>
