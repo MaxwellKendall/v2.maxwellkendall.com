@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { BlogPostCard } from '../page';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
   return (
@@ -34,6 +35,15 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
     router.push(`?${params.toString()}`, { scroll: false });
   }, [searchTerm, router, searchParams]);
 
+  const filteredPosts = posts
+    .filter((p) => p.tags.includes('public'))
+    .filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchLower) ||
+        post.description?.toLowerCase().includes(searchLower) ||
+        post.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
+    );
+
   return (
     <div className="min-w-full">
       <input
@@ -45,15 +55,22 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
                   p-2 mb-4 border rounded-lg"
       />
       <div className="space-y-4 w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem]">
-        {posts
-          .filter((p) => p.tags.includes('public'))
-          .filter(
-            (post) =>
-              post.title.toLowerCase().includes(searchLower) ||
-              post.description?.toLowerCase().includes(searchLower) ||
-              post.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
-          )
-          .map((post) => (
+        {filteredPosts.length === 0 ? (
+          <div className="text-center py-8">
+            <Image
+              src="https://media.giphy.com/media/baPIkfAo0Iv5K/giphy.gif?cid=790b7611tmc3e8e515dfcxz80fqrgq6hy5i8j5g8ev8j9ngy&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+              alt="Eddie Murphy tapping head thinking meme"
+              width={192}
+              height={192}
+              className="mx-auto mb-4 rounded-lg object-cover w-[300px] md:w-[450px] lg:w-[600px] xl:w-[750px]"
+            />
+            <p className="text-xl text-gray-600 mb-2">
+              Oops I haven&apos;t written anything up about that yet!
+            </p>
+            <p className="text-gray-500">Try searching for something else!</p>
+          </div>
+        ) : (
+          filteredPosts.map((post) => (
             <article
               key={post.slug}
               className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
@@ -93,7 +110,8 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
                 </div>
               </Link>
             </article>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );
