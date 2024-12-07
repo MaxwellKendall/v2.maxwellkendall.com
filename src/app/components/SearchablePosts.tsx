@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { BlogPostCard } from '../page';
+import { format } from 'date-fns';
 
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
   return (
@@ -34,15 +35,16 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
   }, [searchTerm, router, searchParams]);
 
   return (
-    <>
+    <div className="min-w-full">
       <input
         type="text"
         placeholder="Search posts..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 mb-4 border rounded-lg"
+        className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
+                  p-2 mb-4 border rounded-lg"
       />
-      <div className="space-y-4">
+      <div className="space-y-4 w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem]">
         {posts
           .filter((p) => p.tags.includes('public'))
           .filter(
@@ -54,35 +56,45 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
           .map((post) => (
             <article
               key={post.slug}
-              className="border rounded-lg p-4 hover:bg-gray-50"
+              className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
+                         border rounded-lg p-4 hover:bg-gray-50"
             >
-              <div>
-                <Link href={`/blog/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
+                <div>
                   <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                   {post.description && (
                     <p className="text-gray-700 mb-2">{post.description}</p>
                   )}
-                </Link>
-                <div className="flex gap-2 mb-2">
-                  {post.tags
-                    .filter((tag) => tag !== 'public')
-                    .map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => setSearchTerm(tag)}
-                        className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm rounded-full cursor-pointer transition-colors"
-                      >
-                        {tag}
-                      </button>
-                    ))}
+                  <div className="flex gap-2 mb-2">
+                    {post.tags
+                      .filter((tag) => tag !== 'public')
+                      .map((tag) => (
+                        <button
+                          key={tag}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setSearchTerm(tag);
+                          }}
+                          className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 
+                            text-gray-700 text-sm rounded-full cursor-pointer 
+                            transition-all duration-200 border border-gray-200 
+                            hover:border-gray-300 font-medium 
+                            hover:shadow-sm active:scale-95"
+                        >
+                          #{tag}
+                        </button>
+                      ))}
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600 text-xs">
+                    <p>{format(new Date(post.date), 'MMMM do, yyyy')}</p>
+                    <span>•</span>
+                    <p>{post.readingTime}</p>
+                  </div>
                 </div>
-                <Link href={`/blog/${post.slug}`}>
-                  <p className="text-gray-600">{post.date}</p>
-                </Link>
-              </div>
+              </Link>
             </article>
           ))}
       </div>
-    </>
+    </div>
   );
 }

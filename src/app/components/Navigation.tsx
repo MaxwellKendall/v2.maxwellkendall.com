@@ -6,7 +6,11 @@ export const Navigation = () => {
   return (
     <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
       <div className="flex items-center gap-8">
-        <Link href="/" className="w-12 h-12 overflow-hidden rounded-full">
+        <Link
+          href="/"
+          replace
+          className="w-12 h-12 overflow-hidden rounded-full"
+        >
           <Image
             src="/images/Headshot.jpg"
             alt="Profile Picture"

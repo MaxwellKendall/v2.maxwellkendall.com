@@ -10,7 +10,8 @@ export interface BlogPostCard {
   title: string;
   tags: string[];
   date: string;
-  description?: string; // should be required
+  description?: string;
+  readingTime: string;
 }
 
 const POSTS_DIRECTORY = 'src/blog-posts';
@@ -35,16 +36,22 @@ function getBlogPosts(): BlogPostCard[] {
     files.forEach((fileName) => {
       const fullPath = path.join(categoryPath, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data: frontmatter } = matter(fileContents);
+      const { data: frontmatter, content } = matter(fileContents);
       const tags = frontmatter.tags.split(',');
       if (!frontmatter.slug) {
         frontmatter.slug = fileName.replace(/\.md$/, '');
       }
 
-      // Add the category to the post data
+      // Calculate reading time
+      const wordsPerMinute = 200;
+      const wordCount = content.trim().split(/\s+/).length;
+      const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+      // Add the category and reading time to the post data
       posts.push({
         ...(frontmatter as BlogPostCard),
         tags,
+        readingTime: `${readingTime} min read`,
       });
     });
   });
