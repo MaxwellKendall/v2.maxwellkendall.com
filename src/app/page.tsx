@@ -1,12 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import Link from 'next/link';
 import matter from 'gray-matter';
 import Layout from './layout';
+import SearchablePosts from '@/components/SearchablePosts';
 
-const PUBLIC_POST = 'public';
-
-interface BlogPostCard {
+export interface BlogPostCard {
   slug: string;
   title: string;
   tags: string[];
@@ -60,24 +58,7 @@ export default function Home() {
     <Layout>
       <main className="max-w-4xl mx-auto py-8 px-4">
         <h1 className="text-3xl font-bold mb-8">Blog Posts</h1>
-        <div className="space-y-4">
-          {posts
-            .filter((p) => p.tags.includes(PUBLIC_POST))
-            .map((post) => (
-              <article
-                key={post.slug}
-                className="border rounded-lg p-4 hover:bg-gray-50"
-              >
-                <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-                  {post.description && (
-                    <p className="text-gray-700 mb-2">{post.description}</p>
-                  )}
-                  <p className="text-gray-600">{post.date}</p>
-                </Link>
-              </article>
-            ))}
-        </div>
+        <SearchablePosts posts={posts} />
       </main>
     </Layout>
   );
