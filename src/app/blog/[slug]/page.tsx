@@ -49,24 +49,31 @@ const customComponents: Components = {
     </a>
   ),
 
+  pre: ({ children }: { children: ReactNode }) => <pre>{children}</pre>,
+
   // Style code blocks and inline code
   code: ({
     inline,
+    className,
     children,
   }: {
     inline?: boolean;
     className?: string;
     children: ReactNode;
-  }) =>
-    inline ? (
-      <span className="bg-gray-800 dark:bg-gray-900 text-gray-200 rounded px-1.5 py-0.5 text-sm font-mono border border-gray-700 inline">
+  }) => {
+    // If there's no className, it's an inline code block
+    const isInline = !className;
+
+    return isInline ? (
+      <code className="rounded bg-[#f6f8fa] px-[0.4em] py-[0.2em] text-[0.9em] font-mono text-[#24292e] dark:bg-[#21262d] dark:text-[#c9d1d9]">
         {children}
-      </span>
+      </code>
     ) : (
       <code className="block bg-gray-800 dark:bg-gray-900 text-gray-200 rounded-lg p-4 my-4 text-sm font-mono overflow-x-auto border border-gray-700 shadow-lg">
         {children}
       </code>
-    ),
+    );
+  },
 
   // Style blockquotes
   blockquote: ({ children }: { children: ReactNode }) => (
