@@ -1,7 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
-import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import Layout from '../../layout';
 import { getPostBySlug } from '../../../lib/blog-utils';
 import { notFound } from 'next/navigation';
@@ -10,6 +9,8 @@ import { Footer } from '../../components/Footer';
 import { Components } from 'react-markdown';
 import { ReactNode } from 'react';
 import { format, parseISO } from 'date-fns';
+// import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
+import 'highlight.js/styles/github-dark-dimmed.css';
 
 // Create a custom components object for ReactMarkdown
 const customComponents: Components = {
@@ -27,13 +28,13 @@ const customComponents: Components = {
 
   // Style headings
   h1: ({ children }: { children: ReactNode }) => (
-    <h1 className="text-4xl font-bold mb-6 mt-8">{children}</h1>
+    <h1 className="text-3xl font-bold mb-6 mt-8">{children}</h1>
   ),
   h2: ({ children }: { children: ReactNode }) => (
-    <h2 className="text-3xl font-bold mb-4 mt-8">{children}</h2>
+    <h2 className="text-2xl font-bold mb-4 mt-8">{children}</h2>
   ),
   h3: ({ children }: { children: ReactNode }) => (
-    <h3 className="text-2xl font-bold mb-3 mt-6">{children}</h3>
+    <h3 className="text-xl font-bold mb-3 mt-6">{children}</h3>
   ),
 
   // Style links
@@ -58,11 +59,11 @@ const customComponents: Components = {
     children: ReactNode;
   }) =>
     inline ? (
-      <code className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-sm font-mono">
+      <span className="bg-gray-800 dark:bg-gray-900 text-gray-200 rounded px-1.5 py-0.5 text-sm font-mono border border-gray-700 inline">
         {children}
-      </code>
+      </span>
     ) : (
-      <code className="block bg-gray-100 dark:bg-gray-800 rounded p-4 my-4 text-sm font-mono overflow-x-auto">
+      <code className="block bg-gray-800 dark:bg-gray-900 text-gray-200 rounded-lg p-4 my-4 text-sm font-mono overflow-x-auto border border-gray-700 shadow-lg">
         {children}
       </code>
     ),
