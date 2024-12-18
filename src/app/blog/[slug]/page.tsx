@@ -53,7 +53,6 @@ const customComponents: Components = {
 
   // Style code blocks and inline code
   code: ({
-    inline,
     className,
     children,
   }: {
@@ -65,11 +64,11 @@ const customComponents: Components = {
     const isInline = !className;
 
     return isInline ? (
-      <code className="rounded bg-[#f6f8fa] px-[0.4em] py-[0.2em] text-[0.9em] font-mono text-[#24292e] dark:bg-[#21262d] dark:text-[#c9d1d9]">
+      <code className="rounded bg-[#f6f8fa] px-[0.4em] py-[0.2em] text-[0.9em] font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] text-[#24292e] dark:bg-[#21262d] dark:text-[#c9d1d9]">
         {children}
       </code>
     ) : (
-      <code className="block bg-gray-800 dark:bg-gray-900 text-gray-200 rounded-lg p-4 my-4 text-sm font-mono overflow-x-auto border border-gray-700 shadow-lg">
+      <code className="block bg-gray-800 dark:bg-gray-900 text-gray-200 rounded-lg p-4 my-4 text-[14px] leading-[1.5] font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] overflow-x-auto border border-gray-700 shadow-lg">
         {children}
       </code>
     );
@@ -108,10 +107,10 @@ export default async function BlogPost({
   return (
     <Layout>
       <Navigation />
-      <main className="max-w-4xl mx-auto py-8 px-4">
+      <main className="max-w-4xl mx-auto py-8 px-4 font-['Inter'] antialiased">
         <article className="prose lg:prose-xl">
-          <h1 className="text-4xl font-bold mb-4">{frontmatter.title}</h1>
-          <p className="text-gray-600 mb-8">{formattedDate}</p>
+          <h1 className="text-4xl font-bold mb-4 font-['Inter']">{frontmatter.title}</h1>
+          <p className="text-gray-600 mb-8 font-['Inter']">{formattedDate}</p>
           <ReactMarkdown
             components={customComponents}
             rehypePlugins={[rehypeHighlight, rehypeRaw]}

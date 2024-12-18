@@ -9,7 +9,7 @@ export const Navigation = () => {
         <Link
           href="/"
           replace
-          className="w-12 h-12 overflow-hidden rounded-full"
+          className="font-['Inter'] text-sm font-medium w-12 h-12 overflow-hidden rounded-full"
         >
           <Image
             src="/images/Headshot.jpg"
@@ -23,7 +23,7 @@ export const Navigation = () => {
           <li>
             <Link
               href="/about"
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              className="font-['Inter'] text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
               About
             </Link>
@@ -32,7 +32,7 @@ export const Navigation = () => {
             <a
               target="_blank"
               href={links.resume}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
+              className="font-['Inter'] text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
             >
               Resume
               <svg
@@ -55,7 +55,7 @@ export const Navigation = () => {
             <a
               target="_blank"
               href={links.email}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
+              className="font-['Inter'] text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-1"
             >
               Contact
               <svg

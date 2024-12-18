@@ -45,14 +45,14 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
     );
 
   return (
-    <div className="min-w-full">
+    <div className="min-w-full font-['Inter'] antialiased">
       <input
         type="text"
         placeholder="Search posts..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
-                  p-2 mb-4 border rounded-lg"
+                  p-2 mb-4 border rounded-lg font-['Inter']"
       />
       <div className="space-y-4 w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem]">
         {filteredPosts.length === 0 ? (
@@ -64,10 +64,10 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
               height={192}
               className="mx-auto mb-4 rounded-lg object-cover w-[300px] md:w-[450px] lg:w-[600px] xl:w-[750px]"
             />
-            <p className="text-xl text-gray-600 mb-2">
+            <p className="text-xl text-gray-600 mb-2 font-['Inter']">
               Oops I haven&apos;t written anything up about that yet!
             </p>
-            <p className="text-gray-500">Try searching for something else!</p>
+            <p className="text-gray-500 font-['Inter']">Try searching for something else!</p>
           </div>
         ) : (
           filteredPosts.map((post) => (
@@ -78,9 +78,9 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
             >
               <Link href={`/blog/${post.slug}`}>
                 <div>
-                  <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+                  <h2 className="text-xl font-semibold mb-2 font-['Inter']">{post.title}</h2>
                   {post.description && (
-                    <p className="text-gray-700 mb-2">{post.description}</p>
+                    <p className="text-gray-700 mb-2 font-['Inter']">{post.description}</p>
                   )}
                   <div className="flex gap-2 mb-2">
                     {post.tags
@@ -95,14 +95,14 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
                           className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 
                             text-gray-700 text-sm rounded-full cursor-pointer 
                             transition-all duration-200 border border-gray-200 
-                            hover:border-gray-300 font-medium 
+                            hover:border-gray-300 font-['Inter'] font-medium 
                             hover:shadow-sm active:scale-95"
                         >
                           #{tag}
                         </button>
                       ))}
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-xs">
+                  <div className="flex items-center gap-2 text-gray-600 text-xs font-['Inter']">
                     <p>{format(new Date(post.date), 'MMMM do, yyyy')}</p>
                     <span>•</span>
                     <p>{post.readingTime}</p>
