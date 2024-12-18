@@ -102,6 +102,24 @@ const customComponents: Components = {
   li: ({ children }: { children: ReactNode }) => (
     <li className="text-gray-800 dark:text-gray-200">{children}</li>
   ),
+
+  img: ({src, alt}) => {
+    if (!src) return null;
+    
+    return (
+      <div className="my-6">
+        <img
+          src={src}
+          alt={alt || ""}
+          className="rounded-lg mx-auto"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
+      </div>
+    );
+  },
 };
 
 export default async function BlogPost({

@@ -4,11 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'media.giphy.com',
-        pathname: '/**',
+        hostname: '**',
       },
     ],
   },
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;
