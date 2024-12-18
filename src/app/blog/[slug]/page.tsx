@@ -60,7 +60,6 @@ const customComponents: Components = {
     className?: string;
     children: ReactNode;
   }) => {
-    // If there's no className, it's an inline code block
     const isInline = !className;
 
     return isInline ? (
@@ -68,9 +67,24 @@ const customComponents: Components = {
         {children}
       </code>
     ) : (
-      <code className="block bg-gray-800 dark:bg-gray-900 text-gray-200 rounded-lg p-4 my-4 text-[14px] leading-[1.5] font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] overflow-x-auto border border-gray-700 shadow-lg">
-        {children}
-      </code>
+      <div className="grid grid-cols-[auto_1fr] bg-gray-800 dark:bg-gray-900 rounded-lg overflow-hidden my-4 border border-gray-700 shadow-lg">
+        <div className="py-2 text-gray-400 text-right bg-gray-700/50 select-none font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] text-[12px] min-w-[2.5rem] px-6">
+          {Array.from(
+            { length: children?.toString().split('\n').length || 1 },
+            (_, i) => (
+              <div
+                key={i + 1}
+                className="h-[21px] flex items-center justify-center"
+              >
+                {i + 1}
+              </div>
+            )
+          )}
+        </div>
+        <code className="block text-gray-200 py-2 px-4 text-[14px] leading-[1.5] font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] overflow-x-auto">
+          {children}
+        </code>
+      </div>
     );
   },
 
@@ -109,7 +123,9 @@ export default async function BlogPost({
       <Navigation />
       <main className="max-w-4xl mx-auto py-8 px-4 font-['Inter'] antialiased">
         <article className="prose lg:prose-xl">
-          <h1 className="text-4xl font-bold mb-4 font-['Inter']">{frontmatter.title}</h1>
+          <h1 className="text-4xl font-bold mb-4 font-['Inter']">
+            {frontmatter.title}
+          </h1>
           <p className="text-gray-600 mb-8 font-['Inter']">{formattedDate}</p>
           <ReactMarkdown
             components={customComponents}
