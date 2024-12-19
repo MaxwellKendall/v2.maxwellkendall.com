@@ -1,23 +1,33 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { links } from '@/lib/links';
 
 export const Navigation = () => {
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
-      <div className="flex items-center gap-8">
+    <nav className="flex items-center px-8 py-4 bg-white shadow-sm">
+      <div className="max-w-4xl w-full mx-auto flex items-center gap-8">
         <Link
           href="/"
           replace
-          className="font-['Inter'] text-sm font-medium w-12 h-12 overflow-hidden rounded-full"
+          className="pointer w-12 h-12 overflow-hidden rounded-full flex items-center justify-center bg-black hover:bg-gray-900 transition-all duration-300 relative group"
         >
-          <Image
-            src="/images/Headshot.jpg"
-            alt="Profile Picture"
-            width={48}
-            height={48}
-            className="object-cover w-full h-full"
-          />
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            className="w-6 h-6 text-lime-400"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <line
+              x1="12"
+              y1="6"
+              x2="12"
+              y2="18"
+              className="animate-[blink_1s_step-end_infinite]"
+            />
+          </svg>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-lime-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
         </Link>
         <ul className="flex items-center gap-8">
           <li>
