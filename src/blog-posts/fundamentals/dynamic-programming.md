@@ -15,11 +15,13 @@ When estimating the complexity of a recursive function, we consider the time and
 
 We can visualize the time complexity as a tree data structure where the initial invocation is seen as the "root node" of the tree.
 
-                       init()
-                      /      \
-                    2()      5()
-                   /   \     /  \
-                 3()   4() 6()  7()
+```shell
+     init()
+    /      \
+  2()      5()
+  /   \     /  \
+3()   4() 6()  7()
+```
 
 This tree represents exponential time complexity where the recursive call is made inside of a loop. In such a case case, the exponent will be the height of the tree and the base will be the maximum number of children for each node.
 
