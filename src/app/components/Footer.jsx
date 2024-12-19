@@ -6,7 +6,7 @@ import { links } from '@/lib/links';
 
 export const Footer = () => {
   return (
-    <footer className="font-['Inter'] antialiased mt-auto w-full bg-gray-800 text-gray-300 py-8">
+    <footer className="font-['Inter'] antialiased mt-auto w-full bg-gray-800 text-gray-300 py-12">
       <div className="container mx-auto">
         <div className="flex justify-center gap-8">
           <a
@@ -65,7 +65,7 @@ export const Footer = () => {
           </a>
         </div>
       </div>
-      <span className="flex justify-center mt-4">
+      <span className="flex justify-center text-sm mt-8">
         Please send questions or comments to
         <a
           className="ml-1 hover:text-white transition-colors duration-200"
@@ -74,7 +74,7 @@ export const Footer = () => {
           maxwell.n.kendall@gmail.com
         </a>
       </span>
-      <span className="flex justify-center mt-2 text-sm">
+      <span className="flex justify-center mt-2 text-xs">
         © {new Date().getFullYear()} Maxwell Kendall. All rights reserved.
       </span>
     </footer>
