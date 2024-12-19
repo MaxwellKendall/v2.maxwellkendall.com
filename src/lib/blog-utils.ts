@@ -34,6 +34,14 @@ function findPostInDirectory(dir: string, slug: string): string | null {
   return null;
 }
 
+const WORDS_PER_MINUTE = 200; // average per ai
+
+export function getReadingTime(content: string): string {
+  const wordCount = content.trim().split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / WORDS_PER_MINUTE);
+  return `${readingTime} min read`;
+}
+
 export function getPostBySlug(slug: string): Promise<Post | null> {
   const postsDirectory = path.join(process.cwd(), POSTS_DIRECTORY);
 
@@ -51,6 +59,7 @@ export function getPostBySlug(slug: string): Promise<Post | null> {
     post: {
       title: frontmatter.title,
       description: frontmatter.description,
+      readingTime: getReadingTime(content),
       date: frontmatter.date,
       tags,
       slug: frontmatter.slug,

@@ -1,5 +1,5 @@
 ---
-title: Dynamic Programmingzzzz
+title: Dynamic Programming
 tags: public, fundamentals
 slug: dynamic-programming
 date: '2023-01-04'

@@ -11,6 +11,7 @@ import { ReactNode } from 'react';
 import { format, parseISO } from 'date-fns';
 // import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import 'highlight.js/styles/github-dark-dimmed.css';
+import Image from 'next/image';
 
 // Create a custom components object for ReactMarkdown
 const customComponents: Components = {
@@ -103,14 +104,14 @@ const customComponents: Components = {
     <li className="text-gray-800 dark:text-gray-200">{children}</li>
   ),
 
-  img: ({src, alt}) => {
+  img: ({ src, alt }) => {
     if (!src) return null;
-    
+
     return (
       <div className="my-6">
-        <img
+        <Image
           src={src}
-          alt={alt || ""}
+          alt={alt || ''}
           className="rounded-lg mx-auto"
           style={{
             maxWidth: '100%',

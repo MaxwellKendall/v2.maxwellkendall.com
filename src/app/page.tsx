@@ -5,6 +5,7 @@ import Layout from './layout';
 import SearchablePosts from './components/SearchablePosts';
 import Navigation from './components/Navigation';
 import { Footer } from './components/Footer';
+import { getReadingTime } from '../lib/blog-utils';
 export interface BlogPostCard {
   slug: string;
   title: string;
@@ -42,16 +43,11 @@ function getBlogPosts(): BlogPostCard[] {
         frontmatter.slug = fileName.replace(/\.md$/, '');
       }
 
-      // Calculate reading time
-      const wordsPerMinute = 200;
-      const wordCount = content.trim().split(/\s+/).length;
-      const readingTime = Math.ceil(wordCount / wordsPerMinute);
-
       // Add the category and reading time to the post data
       posts.push({
         ...(frontmatter as BlogPostCard),
         tags,
-        readingTime: `${readingTime} min read`,
+        readingTime: getReadingTime(content),
       });
     });
   });
