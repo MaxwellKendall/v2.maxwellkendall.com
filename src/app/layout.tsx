@@ -7,9 +7,16 @@ import { Inter, Montserrat, JetBrains_Mono } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 const montserrat = Montserrat({ subsets: ['latin'] });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'] });
+
 export const metadata = {
-  title: 'Blog App',
-  description: 'Next.js blog with Markdown support',
+  title: 'Full Stack Software Engineering',
+  description:
+    'Max is a full stack software engineer. This site contains content related to his current studies.',
+  icons: {
+    icon: '/favicon.svg',
+    // Optional: Add different sizes for iOS/Android
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
