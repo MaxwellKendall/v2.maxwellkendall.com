@@ -17,41 +17,46 @@ export interface BlogPostCard {
 
 const POSTS_DIRECTORY = 'src/blog-posts';
 
-function getBlogPosts(): BlogPostCard[] {
-  const postsDirectory = path.join(process.cwd(), POSTS_DIRECTORY);
-  const posts: BlogPostCard[] = [];
+const parseFile = (filePath: string) => {
+  console.log({ filePath });
+  const fileContents = fs.readFileSync(filePath, 'utf8');
+  const { data: frontmatter, content } = matter(fileContents);
+  const tags = frontmatter.tags.split(',');
+  if (!frontmatter.slug) {
+    frontmatter.slug = filePath.replace(/\.md$/, '').replace(/\//g, '-');
+  }
 
-  // Get all directories
-  const directories = fs
-    .readdirSync(postsDirectory, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+  // Add the category and reading time to the post data
+  return {
+    ...(frontmatter as BlogPostCard),
+    tags,
+    readingTime: getReadingTime(content),
+  };
+};
 
-  // Process each directory
-  directories.forEach((directory) => {
-    const categoryPath = path.join(postsDirectory, directory);
-    const files = fs
-      .readdirSync(categoryPath)
-      .filter((file) => file.endsWith('.md'));
+const getFiles = (directory: string = POSTS_DIRECTORY): Array<string> => {
+  const postsDirectory = path.join(process.cwd(), directory);
+  const dirContent = fs.readdirSync(postsDirectory, { withFileTypes: true });
+  const [files, childDirectories] = dirContent.reduce(
+    (acc: Array<Array<string>>, dirent) => {
+      const path = `${directory}/${dirent.name}`;
+      console.log({ path });
+      if (dirent.isDirectory()) return [acc[0], [...acc[1], path]];
+      return [[...acc[0], path], acc[1]];
+    },
+    [[], []]
+  );
 
-    files.forEach((fileName) => {
-      const fullPath = path.join(categoryPath, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data: frontmatter, content } = matter(fileContents);
-      const tags = frontmatter.tags.split(',');
-      if (!frontmatter.slug) {
-        frontmatter.slug = fileName.replace(/\.md$/, '');
-      }
-
-      // Add the category and reading time to the post data
-      posts.push({
-        ...(frontmatter as BlogPostCard),
-        tags,
-        readingTime: getReadingTime(content),
-      });
-    });
+  childDirectories.forEach((child) => {
+    files.push(...getFiles(child));
   });
 
+  return files;
+};
+
+function getBlogPosts(): BlogPostCard[] {
+  const files = getFiles();
+  const posts = files.map(parseFile);
   return posts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
