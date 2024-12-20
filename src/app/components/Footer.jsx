@@ -6,7 +6,7 @@ import { links } from '@/lib/links';
 
 export const Footer = () => {
   return (
-    <footer className="font-['Inter'] antialiased mt-auto w-full bg-gray-800 text-gray-300 py-12">
+    <footer className="flex flex-col items-center font-['Inter'] antialiased mt-auto w-full bg-gray-800 text-gray-300 py-12">
       <div className="container mx-auto">
         <div className="flex justify-center gap-8">
           <a
@@ -65,7 +65,7 @@ export const Footer = () => {
           </a>
         </div>
       </div>
-      <span className="flex justify-center text-sm mt-8">
+      <span className="flex flex-col sm:flex-row justify-center text-sm mt-8">
         Please send questions or comments to
         <a
           className="ml-1 hover:text-white transition-colors duration-200"
