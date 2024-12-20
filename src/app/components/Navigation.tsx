@@ -7,32 +7,25 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="text-gray-800 dark:text-white font-semibold">
-            <Link
-              href="/"
-              replace
-              className="pointer w-12 h-12 overflow-hidden rounded-full flex items-center justify-center bg-black hover:bg-gray-900 transition-all duration-300 relative group"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                className="w-6 h-6 text-lime-400"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line
-                  x1="12"
-                  y1="6"
-                  x2="12"
-                  y2="18"
-                  className="animate-[blink_1s_step-end_infinite]"
-                />
-              </svg>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-lime-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            <Link href="/" className="flex items-center gap-2">
+              <div className="pointer w-12 h-12 overflow-hidden rounded-full flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  className="w-6 h-6 text-gray-700 hover:text-blue-600 transition-colors duration-200 dark:text-gray-300 dark:hover:text-white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
             </Link>
           </div>
-          
+
           <div className="flex space-x-4">
             <Link
               href="/about"
