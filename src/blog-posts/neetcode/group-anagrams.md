@@ -1,6 +1,6 @@
 ---
-title: Two Sum
-tags: cs fundamentals
+title: Group Anagrams
+tags: cs fundamentals, array
 
 date: '2022-06-22'
 ---

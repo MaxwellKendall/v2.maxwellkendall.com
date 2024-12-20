@@ -1,7 +1,6 @@
 ---
 title: Linked List Data Structure
-tags: public, cs, fundamentals
-
+tags: draft, fundamentals
 date: '2022-05-24'
 ---
 

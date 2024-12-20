@@ -1,6 +1,6 @@
 ---
 title: Trees
-tags: cs fundamentals
+tags: draft, fundamentals
 
 date: '2022-08-09'
 ---

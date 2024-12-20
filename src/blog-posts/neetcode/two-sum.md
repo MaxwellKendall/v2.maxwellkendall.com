@@ -1,8 +1,8 @@
 ---
 title: Two Sum
-tags: cs fundamentals
+tags: cs fundamentals, array
 
-date: '2022-06-222'
+date: '2022-06-22'
 ---
 
 [Link](https://leetcode.com/problems/two-sum/submissions/)

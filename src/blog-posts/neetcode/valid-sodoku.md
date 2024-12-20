@@ -1,6 +1,6 @@
 ---
 title: Valid Sodoku
-tags: cs fundamentals
+tags: cs fundamentals, array
 
 date: '2022-07-29'
 ---

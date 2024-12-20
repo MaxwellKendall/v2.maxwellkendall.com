@@ -1,6 +1,7 @@
 ---
 title: 2022 Tech Layoffs
-tags: none
+tags: private
+date: '2022-01-01'
 ---
 
 The recession has effected multiple peers within my network. This page is dedicated to serving as a reference on their behalf. The following colleagues of mine are experienced, competent professionals in the software industry.

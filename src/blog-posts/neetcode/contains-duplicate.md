@@ -1,8 +1,8 @@
 ---
 title: Contains Duplicate
-tags: cs fundamentals
+tags: cs fundamentals, array
 
-date: '2022-06-222'
+date: '2022-06-20'
 ---
 
 [Link](https://leetcode.com/problems/contains-duplicate/submissions/)

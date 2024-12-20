@@ -1,6 +1,6 @@
 ---
 title: Top K Frequent Elements
-tags: cs fundamentals
+tags: cs fundamentals, array
 
 date: '2022-06-22'
 ---

@@ -1,6 +1,6 @@
 ---
 title: Dynamic Programming
-tags: public, fundamentals
+tags: public, fundamentals, draft
 slug: dynamic-programming
 date: '2023-01-04'
 ---

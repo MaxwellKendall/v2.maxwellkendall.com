@@ -1,6 +1,6 @@
 ---
 title: Graphs
-tags: cs fundamentals
+tags: fundamentals', draft
 
 date: '2022-09-19'
 ---

@@ -6,6 +6,8 @@ import SearchablePosts from './components/SearchablePosts';
 import Navigation from './components/Navigation';
 import { Footer } from './components/Footer';
 import { getReadingTime } from '../lib/blog-utils';
+import { kebabCase } from 'lodash';
+
 export interface BlogPostCard {
   slug: string;
   title: string;
@@ -21,7 +23,7 @@ const parseFile = (filePath: string) => {
   console.log({ filePath });
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data: frontmatter, content } = matter(fileContents);
-  const tags = frontmatter.tags.split(',');
+  const tags = frontmatter.tags.split(',').map(kebabCase);
   if (!frontmatter.slug) {
     frontmatter.slug = filePath.replace(/\.md$/, '').replace(/\//g, '-');
   }

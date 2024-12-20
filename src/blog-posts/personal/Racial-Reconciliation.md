@@ -1,6 +1,6 @@
 ---
 title: Letter to Jacob
-tags: religion
+tags: private
 #
 date: '2020-06-20'
 ---

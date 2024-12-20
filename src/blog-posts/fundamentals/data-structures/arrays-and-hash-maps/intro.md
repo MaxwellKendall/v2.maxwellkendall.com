@@ -1,6 +1,6 @@
 ---
 title: Arrays and Hash Maps
-tags: cs fundamentals
+tags: cs fundamentals, draft
 
 date: '2022-11-04'
 ---

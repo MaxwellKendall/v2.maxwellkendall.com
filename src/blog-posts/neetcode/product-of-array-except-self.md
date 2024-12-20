@@ -1,6 +1,6 @@
 ---
 title: Product of Array Except Self
-tags: cs fundamentals
+tags: cs fundamentals, array
 
 date: '2022-06-28'
 ---

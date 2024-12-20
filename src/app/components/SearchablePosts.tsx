@@ -7,6 +7,8 @@ import type { BlogPostCard } from '../page';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
+const EXCLUDED_TAGS = ['private', 'draft'];
+
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -36,7 +38,7 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
   }, [searchTerm, router, searchParams]);
 
   const filteredPosts = posts
-    .filter((p) => p.tags.includes('public'))
+    .filter((p) => !EXCLUDED_TAGS.some((t) => p.tags.includes(t)))
     .filter(
       (post) =>
         post.title.toLowerCase().includes(searchLower) ||
@@ -67,50 +69,60 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
             <p className="text-xl text-gray-600 mb-2 font-['Inter']">
               Oops I haven&apos;t written anything up about that yet!
             </p>
-            <p className="text-gray-500 font-['Inter']">Try searching for something else!</p>
+            <p className="text-gray-500 font-['Inter']">
+              Try searching for something else!
+            </p>
           </div>
         ) : (
-          filteredPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
+          filteredPosts.map((post) => {
+            return (
+              <article
+                key={post.slug}
+                className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
                          border rounded-lg p-4 hover:bg-gray-50"
-            >
-              <Link href={`/blog/${post.slug}`}>
-                <div>
-                  <h2 className="text-xl font-semibold mb-2 font-['Inter']">{post.title}</h2>
-                  {post.description && (
-                    <p className="text-gray-700 mb-2 font-['Inter']">{post.description}</p>
-                  )}
-                  <div className="flex gap-2 mb-2">
-                    {post.tags
-                      .filter((tag) => tag !== 'public')
-                      .map((tag) => (
-                        <button
-                          key={tag}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setSearchTerm(tag);
-                          }}
-                          className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 
+              >
+                <Link href={`/blog/${post.slug}`}>
+                  <div>
+                    <h2 className="text-xl font-semibold mb-2 font-['Inter']">
+                      {post.title}
+                    </h2>
+                    {post.description && (
+                      <p className="text-gray-700 mb-2 font-['Inter']">
+                        {post.description}
+                      </p>
+                    )}
+                    <div className="flex gap-2 mb-2">
+                      {post.tags
+                        .filter((tag) => tag !== 'public')
+                        .map((tag) => (
+                          <button
+                            key={tag}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setSearchTerm(tag);
+                            }}
+                            className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 
                             text-gray-700 text-sm rounded-full cursor-pointer 
                             transition-all duration-200 border border-gray-200 
                             hover:border-gray-300 font-['Inter'] font-medium 
                             hover:shadow-sm active:scale-95"
-                        >
-                          #{tag}
-                        </button>
-                      ))}
+                          >
+                            #{tag}
+                          </button>
+                        ))}
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-xs font-['Inter']">
+                      {post.date && (
+                        <p>{format(new Date(post.date), 'MMMM do, yyyy')}</p>
+                      )}
+                      <span>•</span>
+                      <p>{post.readingTime}</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600 text-xs font-['Inter']">
-                    <p>{format(new Date(post.date), 'MMMM do, yyyy')}</p>
-                    <span>•</span>
-                    <p>{post.readingTime}</p>
-                  </div>
-                </div>
-              </Link>
-            </article>
-          ))
+                </Link>
+              </article>
+            );
+          })
         )}
       </div>
     </div>

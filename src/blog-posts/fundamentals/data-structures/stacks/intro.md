@@ -1,6 +1,6 @@
 ---
 title: Stack
-tags: cs fundamentals
+tags: draft, fundamentals
 
 date: '2022-08-06'
 ---
