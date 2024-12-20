@@ -29,7 +29,7 @@ _2021 - Present_
 - Authored internal memos influencing **product-level roadmaps**.
 - Engineered scalable features integrating **AI models** and external services.
 
-### [![Booz Allen Hamilton](/images/bah_wordmark.png)](https://boozallen.com)
+### [![Booz Allen Hamilton](/images/bah_logo.svg)](https://boozallen.com)
 
 _2015 - 2021_
 
