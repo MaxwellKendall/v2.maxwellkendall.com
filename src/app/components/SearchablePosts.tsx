@@ -84,15 +84,18 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
               <article
                 key={post.slug}
                 className="w-[20rem] sm:w-[24rem] md:w-[28rem] lg:w-[32rem] xl:w-[36rem] 
-                         border rounded-lg p-4 hover:bg-gray-50"
+                         border rounded-lg p-4 
+                         hover:bg-gray-50 dark:hover:bg-gray-800/50 
+                         transition-colors duration-200
+                         dark:border-gray-700"
               >
                 <Link href={`/blog/${post.slug}`}>
                   <div>
-                    <h2 className="text-xl font-semibold mb-2 font-['Inter']">
+                    <h2 className="text-xl font-semibold mb-2 font-['Inter'] dark:text-gray-100">
                       {post.title}
                     </h2>
                     {post.description && (
-                      <p className="text-gray-700 mb-2 font-['Inter']">
+                      <p className="text-gray-700 mb-2 font-['Inter'] dark:text-gray-300">
                         {post.description}
                       </p>
                     )}
@@ -106,17 +109,17 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
                               e.preventDefault();
                               setSearchTerm(tag);
                             }}
-                            className="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 
-                            text-gray-700 text-sm rounded-full cursor-pointer 
-                            transition-all duration-200 border border-gray-200 
-                            hover:border-gray-300 font-['Inter'] font-medium 
-                            hover:shadow-sm active:scale-95"
+                            className="inline-block px-2 py-1 text-sm rounded-md 
+                              bg-gray-100 text-gray-700
+                              dark:bg-gray-800 dark:text-gray-300
+                              hover:bg-gray-200 dark:hover:bg-gray-700 
+                              transition-colors duration-200"
                           >
-                            #{tag}
+                            {tag}
                           </button>
                         ))}
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 text-xs font-['Inter']">
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400 text-xs font-['Inter']">
                       {post.date && (
                         <p>{format(new Date(post.date), 'MMMM do, yyyy')}</p>
                       )}
