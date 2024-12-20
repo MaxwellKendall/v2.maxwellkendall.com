@@ -71,7 +71,7 @@ const customComponents: Components = {
       <div className="grid grid-cols-[auto_1fr] bg-gray-800 dark:bg-gray-900 rounded-lg overflow-hidden my-4 border border-gray-700 shadow-lg">
         <div className="py-2 text-gray-400 text-right bg-gray-700/50 select-none font-['Consolas',_'Menlo',_'Ubuntu_Mono',_monospace] text-[12px] min-w-[2.5rem] px-6">
           {Array.from(
-            { length: children?.toString().split('\n').length || 1 },
+            { length: (children?.toString().split('\n').length || 1) - 1 },
             (_, i) => (
               <div
                 key={i + 1}
