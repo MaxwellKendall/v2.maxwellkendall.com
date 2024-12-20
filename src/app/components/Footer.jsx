@@ -6,8 +6,8 @@ import { links } from '@/lib/links';
 
 export const Footer = () => {
   return (
-    <footer className="w-full p-4 border-t border-gray-200 dark:border-gray-700">
-      <div className="container mx-auto text-center text-gray-600 dark:text-gray-300">
+    <footer className="flex flex-col items-center font-['Inter'] antialiased mt-auto w-full bg-gray-800 text-gray-300 py-12">
+      <div className="container mx-auto">
         <div className="flex justify-center gap-8">
           <a
             href={links.github}
