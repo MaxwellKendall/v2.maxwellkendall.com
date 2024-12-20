@@ -5,7 +5,7 @@ import Layout from './layout';
 import SearchablePosts from './components/SearchablePosts';
 import Navigation from './components/Navigation';
 import { Footer } from './components/Footer';
-import { getReadingTime } from '../lib/blog-utils';
+import { getReadingTime, parseSlugFromFile } from '../lib/blog-utils';
 import { kebabCase } from 'lodash';
 
 export interface BlogPostCard {
@@ -20,12 +20,12 @@ export interface BlogPostCard {
 const POSTS_DIRECTORY = 'src/blog-posts';
 
 const parseFile = (filePath: string) => {
-  console.log({ filePath });
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data: frontmatter, content } = matter(fileContents);
   const tags = frontmatter.tags.split(',').map(kebabCase);
   if (!frontmatter.slug) {
-    frontmatter.slug = filePath.replace(/\.md$/, '').replace(/\//g, '-');
+    const fileSlug = filePath.split('/').pop() || '';
+    frontmatter.slug = parseSlugFromFile(fileSlug, frontmatter.title);
   }
 
   // Add the category and reading time to the post data
@@ -42,7 +42,6 @@ const getFiles = (directory: string = POSTS_DIRECTORY): Array<string> => {
   const [files, childDirectories] = dirContent.reduce(
     (acc: Array<Array<string>>, dirent) => {
       const path = `${directory}/${dirent.name}`;
-      console.log({ path });
       if (dirent.isDirectory()) return [acc[0], [...acc[1], path]];
       return [[...acc[0], path], acc[1]];
     },

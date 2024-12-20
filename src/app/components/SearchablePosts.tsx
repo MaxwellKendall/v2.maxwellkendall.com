@@ -9,6 +9,18 @@ import Image from 'next/image';
 
 const EXCLUDED_TAGS = ['private', 'draft'];
 
+export const getFilteredPosts = (searchTerm: string, posts: BlogPostCard[]) => {
+  const searchLower = searchTerm.toLowerCase();
+  return posts
+    .filter((p) => !EXCLUDED_TAGS.some((t) => p.tags.includes(t)))
+    .filter(
+      (post) =>
+        post.title.toLowerCase().includes(searchLower) ||
+        post.description?.toLowerCase().includes(searchLower) ||
+        post.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
+    );
+};
+
 export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -18,11 +30,11 @@ export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
 }
 
 function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
+  console.log({ posts });
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('q') || '';
   const [searchTerm, setSearchTerm] = useState(initialSearch);
-  const searchLower = searchTerm.toLowerCase();
 
   // Update URL when search term changes
   useEffect(() => {
@@ -37,14 +49,7 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
     router.push(`?${params.toString()}`, { scroll: false });
   }, [searchTerm, router, searchParams]);
 
-  const filteredPosts = posts
-    .filter((p) => !EXCLUDED_TAGS.some((t) => p.tags.includes(t)))
-    .filter(
-      (post) =>
-        post.title.toLowerCase().includes(searchLower) ||
-        post.description?.toLowerCase().includes(searchLower) ||
-        post.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
-    );
+  const filteredPosts = getFilteredPosts(searchTerm, posts);
 
   return (
     <div className="min-w-full font-['Inter'] antialiased">

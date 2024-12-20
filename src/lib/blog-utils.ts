@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { BlogPostCard } from '@/app/page';
+import { kebabCase } from 'lodash';
 
 const POSTS_DIRECTORY = 'src/blog-posts';
 
@@ -9,8 +10,18 @@ export interface Post {
   post: BlogPostCard;
   content: string;
 }
+
+export const parseSlugFromFile = (
+  filePath: string,
+  frontMatterTitle: string
+) => {
+  const fileSlug = filePath.split('/').pop()?.replace(/\.md$/, '');
+  return `${kebabCase(frontMatterTitle)}-${fileSlug}`;
+};
+
 // Helper function to search recursively through directories
-function findPostInDirectory(dir: string, slug: string): string | null {
+function findPostInDirectory(dir: string, rawSlug: string): string | null {
+  const slug = rawSlug.replace(/:/g, '/');
   const items = fs.readdirSync(dir, { withFileTypes: true });
 
   for (const item of items) {
@@ -23,7 +34,7 @@ function findPostInDirectory(dir: string, slug: string): string | null {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const { data: frontmatter } = matter(fileContents);
       if (!frontmatter.slug) {
-        frontmatter.slug = item.name.replace(/\.md$/, '');
+        frontmatter.slug = parseSlugFromFile(item.name, frontmatter.title);
       }
       if (frontmatter.slug === slug) {
         return fullPath;
