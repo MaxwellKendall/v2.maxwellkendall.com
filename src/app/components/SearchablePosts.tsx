@@ -30,7 +30,6 @@ export default function SearchablePosts({ posts }: { posts: BlogPostCard[] }) {
 }
 
 function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
-  console.log({ posts });
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('q') || '';

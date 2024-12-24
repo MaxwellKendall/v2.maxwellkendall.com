@@ -10,7 +10,7 @@ First, some terminology differences:
 > Elements of an array vs Nodes of a LL
 > Indexes of an array vs Positions of a LL
 
-More substantial, arrays are stored "contiguously" in memory. This means all elements are "right next to eachother" in the computer's memory. This has consequences in the runtime. For instance, if you want to insert a value into an index, the steps needed are:
+More substantial, arrays are stored "contiguously" in memory. This means all elements are "right next to each other" in the computer's memory. This has consequences in the runtime. For instance, if you want to insert a value into an index, the steps needed are:
 
 1. Check the array can increase one index in size
 2. Shift all elements to the right -- or greater than -- the index for the insertion
