@@ -1,7 +1,7 @@
 ---
 title: Who Wins Connect Four?
-tags: cs fundamentals
-
+tags: interview-question
+slug: who-wins-connect-four
 date: '2022-10-28'
 ---
 

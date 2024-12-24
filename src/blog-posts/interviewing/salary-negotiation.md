@@ -1,6 +1,6 @@
 ---
 title: Salary Negotiation
-tags: cs fundamentals
+tags: cs fundamentals, private
 
 date: '2022-09-19'
 ---
