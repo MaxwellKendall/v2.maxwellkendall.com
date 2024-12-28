@@ -100,6 +100,11 @@ const customComponents: Components = {
   ul: ({ children }: { children: ReactNode }) => (
     <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>
   ),
+  ol: ({ children, start }: { children: ReactNode; start?: number }) => (
+    <ol start={start} className="list-decimal list-inside mb-4 space-y-2">
+      {children}
+    </ol>
+  ),
   li: ({ children }: { children: ReactNode }) => (
     <li className="text-gray-800 dark:text-gray-200">{children}</li>
   ),
