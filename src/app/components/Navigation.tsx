@@ -3,8 +3,8 @@ import { links } from '@/lib/links';
 
 export const Navigation = () => {
   return (
-    <nav className="w-full bg-white dark:bg-gray-800 shadow-sm">
-      <div className="container mx-auto px-4 py-3">
+    <nav className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-sm">
+      <div className="container max-w-4xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="text-gray-800 dark:text-white font-semibold">
             <Link href="/" className="flex items-center gap-2">
