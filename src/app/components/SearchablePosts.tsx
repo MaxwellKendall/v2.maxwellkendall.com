@@ -114,7 +114,7 @@ function SearchablePostsContent({ posts }: { posts: BlogPostCard[] }) {
                               hover:bg-gray-200 dark:hover:bg-gray-700 
                               transition-colors duration-200"
                           >
-                            {tag}
+                            {`#${tag}`}
                           </button>
                         ))}
                     </div>
