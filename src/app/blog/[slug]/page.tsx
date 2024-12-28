@@ -147,10 +147,17 @@ export default async function BlogPost({
       <Navigation />
       <main className="max-w-4xl mx-auto py-8 px-4 font-['Inter'] antialiased">
         <article className="prose lg:prose-xl">
-          <h1 className="text-4xl font-bold mb-4 font-['Inter']">
+          <h1 className="text-center text-4xl font-bold mb-4 font-['Inter']">
             {frontmatter.title}
           </h1>
-          <p className="text-gray-600 mb-8 font-['Inter']">{formattedDate}</p>
+          <p className="text-center text-gray-600 mb-4 font-['Inter']">
+            {formattedDate}
+          </p>
+          {frontmatter.tags && (
+            <p className="text-center text-gray-600 mb-8 font-['Inter']">
+              {frontmatter.tags.map((tag) => `#${tag.trim()}`).join(', ')}
+            </p>
+          )}
           <ReactMarkdown
             components={customComponents}
             rehypePlugins={[rehypeHighlight, rehypeRaw]}
