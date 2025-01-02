@@ -10,17 +10,19 @@ In Dynamic Programming (DP) we use cache not only to eliminate redundant computa
 
 ## Properties of a Dynamic Programing Problem
 
-When a given problem possesses the following properties, we should consider employing this pattern.
+When a given problem possesses the following properties, we should consider using this pattern.
 
-1. **The answer is trivial for a subset of inputs**
+1. **The answer is known for a subset of inputs**
 
-This property applies to a lot of problems. Not all inputs for a given problem are equivalent. Some are trivial and others are very difficult. In such a case, we should consider the plausibility of a dynamic cache.
+If the answer is trivial for a known subset of inputs, a few questions should be asked:
 
 > Given a cache with answers for input set [x:z], can we determine the answer for input `x1`?
 
-2. **The solution is determined in terms of itself**
+If so, this is a signal that a dynamic cache may be a sound answer to our problem.
 
-This property requires more than just a function calling itself. It requires that the answer to the problem is be expressible as the answer to the same problem with different inputs.
+2. **The solution is expressed in terms of itself**
+
+This property requires that the answer to the problem is defined as the answer to the same problem with different inputs.
 
 Two of the most common examples of this algorithmic pattern, [the fibonacci sequence](https://leetcode.com/problems/fibonacci-number/description/) and [climbing stairs](https://leetcode.com/problems/climbing-stairs/description/), are perfect illustrations of both of these properties.
 
@@ -59,12 +61,14 @@ def climb_stairs(n: int) -> int:
     return cache[n]
 ```
 
-In each of the above examples, we can see the properties above very clearly. First, we know the answer for a trivial subset of inputs; for `fibonacci`, we know the answer for all inputs less than or equal to 1; for `climb_stairs`, we know the answer to all inputs less than or equal to 3. Coming to this conclusion requires little more than observation. It does not require much thought.Second, we express the solution in terms of itself; for `fibonacci`, this only requires observation of the mathematical defintion of the sequence of numbers; for `climbing_stairs`, it requires a bit of logical reflection. To climb `n` stairs, we determine all unique permutations of 1 and 2 which sum to `n` by observing the answer will be the same as the subset of permutations of `n - 1` -- where every individual permutation has a `1 step` appended to it -- ad of `n - 2` -- whever every individual permutation has a `2 step` appended to it.
+In each of the above examples, we can see the properties above very clearly. First, we know the answer for a trivial subset of inputs; for `fibonacci`, we know the answer for all inputs less than or equal to 1; for `climb_stairs`, we know the answer to all inputs less than or equal to 3. Coming to this conclusion requires little more than observation. It does not require much thought.Second, we express the solution in terms of itself; for `fibonacci`, this only requires observation of the mathematical defintion of the sequence of numbers; for `climbing_stairs`, it requires a bit of logical reflection. To climb `n` stairs, we determine all unique permutations of 1 and 2 which sum to `n` by observing the answer will be the same as the subset of permutations of `n - 1` -- where every individual permutation has a `1 step` appended to it -- and of `n - 2` -- whever every individual permutation has a `2 step` appended to it.
+
+These two problems are in essence one. The only difference is that property (2) is given to us by the formal definition of the `fibonacci sequence` whereas in climbing stairs, we have to logically parse this property ourselves.
 
 ## Conclusion
 
 The dynamic programming pattern has some beauty to it. We can admire the cleverness at play. Sometimes -- as is the case with the fibonacci sequence -- the dual properties of trivial inputs and recursive solutions are easy to percieve. Othertimes, they are less obvious -- as is the case with `climbing_stairs`.
 
-This pattern gets even more interesting when storage optimizations are applied to the dynamic cache. In such a case, the program evicts the parts of the cache when it is known that they will never be used again.
+In Part II, we examine two variations of the [Coin Change](https://leetcode.com/problems/coin-change/description/) problem. This will serve as an introduction to the need for a more complex shape for our cache.
 
 Please let me know if you found this article useful or if you would like to provide further clarity and corrections by sending me an email at [maxwellnkendall@gmail.com](mailto:maxwellnkendall@gmail.com?subject=Feedback%20on%20Dynamic%20Programming%20Part%20I).
