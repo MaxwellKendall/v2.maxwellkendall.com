@@ -11,19 +11,19 @@ export async function GET(request: Request) {
     new URL('../../fonts/Inter/static/Inter_24pt-Bold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
-  const montserrat = fetch(
-    new URL(
-      '../../fonts/Montserrat/static/Montserrat-Bold.ttf',
-      import.meta.url
-    )
-  ).then((res) => res.arrayBuffer());
+  // const montserrat = fetch(
+  //   new URL(
+  //     '../../fonts/Montserrat/static/Montserrat-Bold.ttf',
+  //     import.meta.url
+  //   )
+  // ).then((res) => res.arrayBuffer());
 
-  const jetbrainsMono = fetch(
-    new URL(
-      '../../fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Bold.ttf',
-      import.meta.url
-    )
-  ).then((res) => res.arrayBuffer());
+  // const jetbrainsMono = fetch(
+  //   new URL(
+  //     '../../fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Bold.ttf',
+  //     import.meta.url
+  //   )
+  // ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -67,18 +67,18 @@ export async function GET(request: Request) {
           style: 'normal',
           weight: 700,
         },
-        {
-          name: 'Montserrat',
-          data: await montserrat,
-          style: 'normal',
-          weight: 700,
-        },
-        {
-          name: 'JetBrains Mono',
-          data: await jetbrainsMono,
-          style: 'normal',
-          weight: 700,
-        },
+        // {
+        //   name: 'Montserrat',
+        //   data: await montserrat,
+        //   style: 'normal',
+        //   weight: 700,
+        // },
+        // {
+        //   name: 'JetBrains Mono',
+        //   data: await jetbrainsMono,
+        //   style: 'normal',
+        //   weight: 700,
+        // },
       ],
     }
   );
