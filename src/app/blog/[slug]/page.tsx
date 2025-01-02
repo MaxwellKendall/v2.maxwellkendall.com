@@ -12,6 +12,7 @@ import { format, parseISO } from 'date-fns';
 // import 'highlight.js/styles/github-dark.css'; // or any other style you prefer
 import 'highlight.js/styles/github-dark-dimmed.css';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 // Create a custom components object for ReactMarkdown
 const customComponents: Components = {
@@ -169,4 +170,36 @@ export default async function BlogPost({
       <Footer />
     </Layout>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+  if (!post) return {};
+  const { post: frontmatter } = post;
+
+  // Create the OG image URL
+  const ogImage = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/api/og`);
+  ogImage.searchParams.append('title', frontmatter.title);
+
+  return {
+    title: frontmatter.title,
+    openGraph: {
+      images: [
+        {
+          url: ogImage.toString(),
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [ogImage.toString()],
+    },
+  };
 }
