@@ -15,6 +15,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@vercel/og": "^0.6.4",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.0",
