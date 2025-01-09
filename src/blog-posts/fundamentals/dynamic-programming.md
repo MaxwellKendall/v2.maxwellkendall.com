@@ -6,7 +6,7 @@ date: '2024-12-28'
 description: Dynamic programming is an optimization where we use cache not only to eliminate redundant computations, but to determine the answer for new inputs.
 ---
 
-In Dynamic Programming (DP) we use cache not only to eliminate redundant computations, **but to determine the answer for new inputs.** As with any algorithmic pattern, the real test of understanding is by being able to identify the conditions when employing the pattern will achieve the optimal solution -- not by a rote memorization of the pattern itself.
+In Dynamic Programming (DP), we use cache not only to eliminate redundant computations, **but to determine the answer for new inputs.** As with any algorithmic pattern, the real test of understanding is by being able to identify the conditions when employing the pattern will achieve the optimal solution -- not by a rote memorization of the pattern itself.
 
 ## Properties of a Dynamic Programing Problem
 
@@ -64,8 +64,7 @@ In each of the above examples, we can see the properties above very clearly.
 
 First, we know the answer for a trivial subset of inputs; for `fibonacci`, we know the answer for all inputs less than or equal to 1; for `climb_stairs`, we know the answer to all inputs less than or equal to 3. Coming to this conclusion requires little more than observation. It does not require much thought.
 
-Second, we express the solution in terms of itself; for `fibonacci`, this only requires observation of the mathematical defintion of the sequence of numbers; for `climbing_stairs`, it requires a bit of logical reflection. To climb `n` stairs, we determine all unique permutations of 1 and 2 which sum to `n` by observing the answer will be the same as the subset of permutations of `n - 1` -- where every individual permutation has a `1 step` appended to it -- and of `n - 2` -- whever every individual permutation has a `2 step` appended to it.
-
+Second, we express the solution in terms of itself; for `fibonacci`, this only requires observation of the mathematical definition of the sequence of numbers; for `climbing_stairs`, it requires a bit of logical reflection. To climb `n` stairs, we determine all unique permutations of 1 and 2 which sum to `n` by observing the answer will be the same as the subset of permutations of `n - 1` -- where every individual permutation has a `1 step` appended to it -- and of `n - 2` -- where every individual permutation has a `2 step` appended to it.
 
 ## Conclusion
 

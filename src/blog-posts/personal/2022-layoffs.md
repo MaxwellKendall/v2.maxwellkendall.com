@@ -1,7 +1,7 @@
 ---
-title: Binary Search Algorithim
+title: 2022 Layoffs
 # tags: public, cs fundamentals
-tags: business
+tags: business, private
 
 date: '2022-06-08'
 ---
