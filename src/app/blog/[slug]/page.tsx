@@ -155,7 +155,7 @@ export default async function BlogPost({
             {formattedDate}
           </p>
           {frontmatter.tags && (
-            <p className="text-center text-gray-600 mb-8 font-['Inter']">
+            <p className="tags text-center text-gray-600 mb-8 font-['Inter']">
               {frontmatter.tags.map((tag) => `#${tag.trim()}`).join(', ')}
             </p>
           )}
