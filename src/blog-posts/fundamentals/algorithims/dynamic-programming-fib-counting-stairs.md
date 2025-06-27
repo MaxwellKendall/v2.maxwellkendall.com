@@ -68,7 +68,7 @@ Second, we express the solution in terms of itself; for `fibonacci`, this only r
 
 ## Conclusion
 
-These two problems are in essence one. The only difference is that property (2) is given to us by the formal definition of the `fibonacci sequence` whereas in climbing stairs, we have to logically parse this property ourselves.
+These two problems are in essence one. The only difference is that property (2) is given to us by the formal definition of the `fibonacci sequence` whereas in climbing stairs, we have to detect this property of the solution ourselves.
 
 In Part II, we examine two variations of the [Coin Change](https://leetcode.com/problems/coin-change/description/) problem. This will serve as an introduction to the need for a more complex shape for our cache.
 

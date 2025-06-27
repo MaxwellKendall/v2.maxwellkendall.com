@@ -22,7 +22,8 @@ const POSTS_DIRECTORY = 'src/blog-posts';
 const parseFile = (filePath: string) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data: frontmatter, content } = matter(fileContents);
-  const tags = frontmatter.tags.split(',').map(kebabCase);
+  console.log('Frontmatter:', frontmatter, content);
+  const tags = frontmatter.tags?.split(',')?.map(kebabCase) || [];
   if (!frontmatter.slug) {
     const fileSlug = filePath.split('/').pop() || '';
     frontmatter.slug = parseSlugFromFile(fileSlug, frontmatter.title);
