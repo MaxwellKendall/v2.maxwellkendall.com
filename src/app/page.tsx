@@ -18,6 +18,15 @@ export interface BlogPostCard {
 }
 
 const POSTS_DIRECTORY = 'src/blog-posts';
+const IMAGE_FILE_EXTENSIONS = [
+  '.png',
+  '.jpg',
+  '.jpeg',
+  '.gif',
+  '.svg',
+  '.webp',
+  '.bmp',
+];
 
 const parseFile = (filePath: string) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -40,10 +49,20 @@ const parseFile = (filePath: string) => {
 const getFiles = (directory: string = POSTS_DIRECTORY): Array<string> => {
   const postsDirectory = path.join(process.cwd(), directory);
   const dirContent = fs.readdirSync(postsDirectory, { withFileTypes: true });
+
   const [files, childDirectories] = dirContent.reduce(
     (acc: Array<Array<string>>, dirent) => {
       const path = `${directory}/${dirent.name}`;
       if (dirent.isDirectory()) return [acc[0], [...acc[1], path]];
+
+      // Exclude image files
+      const fileExtension = dirent.name
+        .toLowerCase()
+        .substring(dirent.name.lastIndexOf('.'));
+      if (IMAGE_FILE_EXTENSIONS.includes(fileExtension)) {
+        return acc; // Skip image files
+      }
+
       return [[...acc[0], path], acc[1]];
     },
     [[], []]
