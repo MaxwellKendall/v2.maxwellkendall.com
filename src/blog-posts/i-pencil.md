@@ -2,12 +2,12 @@
 title: 'I, Pencil'
 date: '2025-06-27'
 tags: 'technical-collaboration'
-description: 'The role of self-interest and collaboration in complex systems.'
+description: 'A classic economic parable applied to software engineering.'
 ---
 
 ## Introduction
 
-No one can make a pencil. So goes the argument in the classic essay “I, Pencil.” The key observation of the essay is that pencils, common as they may be, are in fact exceedingly complex; in other words, they are made up of many parts from diverse groups across the world. Given this observation, an obvious question emerges. How in the world did it come to be that such a complex creation is ubiquitous?
+No one can make a pencil. So goes the argument in the classic essay “[I, Pencil](https://fee.org/ebooks/i-pencil/).” The key observation of the essay is that pencils, common as they may be, are in fact exceedingly complex; in other words, they are made up of many parts from diverse groups across the world. Given this observation, an obvious question emerges. How in the world did it come to be that such a complex creation is ubiquitous?
 
 Could it be that there is some “master-mind” behind it all? Perhaps some experts harvest the wood, mine the graphite, create the rubber, paint the wood, and apply the brass plating all by themselves? While plausible, it is not so.
 
@@ -36,4 +36,5 @@ Second, the existence of “specialists” (brass-workers, wood harvesters) can 
 
 Third, we can recognize that the collaboration between specialists is hard. This is one of the most difficult parts of software engineering; cross domain collaboration. It is a particular sore-spot, I believe, for many engineering teams. One way forward I is to interrogate our “incentive structure” until we see our specialists are serving our generalists: in other words, specialists devoting themselves to the creation and maintenance of documentation and abstractions which are idiomatic andintuitive. Doing this results in specialists multiplying themselves in others so that more can serve in that domain. Documentation can also be an artifact of simply helping others. Those who are helped can contribute and express their thanks for the help by becoming contributors not only to the code itself but to the documentation.
 
-Lastly, we can recognize that not everyone must be a specialist. Put positively, there is value in being a generalist. Many people within the engineering world have recognized this.
+Lastly, we can recognize that specialization is not the only (or perhaps even sufficient!) aspiration for software engineers. Put positively, there is value in being a generalist. [Many people within the engineering world have recognized this](https://martinfowler.com/articles/expert-generalist.html). I have made it a personal aspiration
+myself and find great satisfaction in learning new things and broadening my skill set. It also should be mentioned that specialization and generalization are not mutually exclusive. One can be a specialist in one domain and a generalist in another.
