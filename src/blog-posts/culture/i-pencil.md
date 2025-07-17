@@ -1,5 +1,6 @@
 ---
 title: 'I, Pencil'
+slug: 'i-pencil'
 date: '2025-06-27'
 tags: 'technical-collaboration'
 description: 'A classic economic parable applied to software engineering.'
