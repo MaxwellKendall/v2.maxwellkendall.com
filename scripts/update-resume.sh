@@ -14,6 +14,7 @@
 set -euo pipefail
 
 BUCKET_KEY="s3://mnk-resume/maxwell_kendall_resume.pdf"
+CLOUDFRONT_DISTRIBUTION_ID="E29NA9UXA1LGB4"
 
 pdf_path="${1:-}"
 
@@ -31,6 +32,12 @@ fi
 echo "Uploading: $pdf_path"
 echo "       to: $BUCKET_KEY"
 aws s3 cp "$pdf_path" "$BUCKET_KEY"
+
+echo
+echo "Invalidating CloudFront cache..."
+aws cloudfront create-invalidation \
+  --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+  --paths "/" "/maxwell_kendall_resume.pdf"
 
 echo
 echo "Done. Current object:"
