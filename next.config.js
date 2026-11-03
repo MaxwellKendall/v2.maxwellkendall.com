@@ -8,8 +8,10 @@ const nextConfig = {
       },
     ],
   },
-  // The MCP tools read post sources at runtime, so ship them with the function
+  // Post pages and the MCP tools read post sources at runtime, which the file
+  // tracer can't see through process.cwd(), so ship them explicitly
   outputFileTracingIncludes: {
+    '/blog/[slug]': ['./src/blog-posts/**/*.md'],
     '/api/mcp': ['./src/blog-posts/**/*.md'],
   },
 };
