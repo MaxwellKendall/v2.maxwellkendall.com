@@ -68,7 +68,13 @@ export async function generateMetadata({
   const { post: frontmatter } = post;
 
   // Create the OG image URL
-  const ogImage = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/api/og`);
+  // Preview deployments and local dev may not set NEXT_PUBLIC_BASE_URL
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : 'http://localhost:3000');
+  const ogImage = new URL(`${baseUrl}/api/og`);
   ogImage.searchParams.append('title', frontmatter.title);
 
   return {

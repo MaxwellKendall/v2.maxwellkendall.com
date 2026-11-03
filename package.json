@@ -16,11 +16,14 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
     "@vercel/og": "^0.6.4",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.0",
+    "jose": "6.2.12",
     "lodash": "^4.17.21",
+    "mcp-handler": "2.3.0",
     "next": "15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -28,7 +31,8 @@
     "react-markdown": "^9.0.1",
     "rehype-highlight": "^7.0.1",
     "rehype-raw": "^7.0.0",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
