@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 
 export default {
   darkMode: 'media',
@@ -12,19 +13,17 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        muted: 'var(--muted)',
+        subtle: 'var(--subtle)',
+        border: 'var(--border)',
+        surface: 'var(--surface)',
+        accent: 'var(--accent)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Montserrat', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Menlo', 'monospace'],
-      },
-    },
-    keyframes: {
-      blink: {
-        '0%, 100%': { opacity: '1' },
-        '50%': { opacity: '0' },
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Menlo', 'monospace'],
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 } satisfies Config;

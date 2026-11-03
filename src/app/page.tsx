@@ -1,10 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import Layout from './layout';
 import SearchablePosts from './components/SearchablePosts';
-import Navigation from './components/Navigation';
-import { Footer } from './components/Footer';
+import Link from 'next/link';
 import { getReadingTime, parseSlugFromFile } from '../lib/blog-utils';
 import { kebabCase } from 'lodash';
 
@@ -31,7 +29,6 @@ const IMAGE_FILE_EXTENSIONS = [
 const parseFile = (filePath: string) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data: frontmatter, content } = matter(fileContents);
-  console.log('Frontmatter:', frontmatter, content);
   const tags = frontmatter.tags?.split(',')?.map(kebabCase) || [];
   if (!frontmatter.slug) {
     const fileSlug = filePath.split('/').pop() || '';
@@ -87,12 +84,21 @@ export default function Home() {
   const posts = getBlogPosts();
 
   return (
-    <Layout>
-      <Navigation />
-      <main className="max-w-4xl mx-auto py-8 px-4">
-        <SearchablePosts posts={posts} />
-      </main>
-      <Footer />
-    </Layout>
+    <>
+      <header className="mb-16">
+        <h1 className="sr-only">Maxwell Kendall</h1>
+        <p className="max-w-xl text-xl leading-relaxed text-muted">
+          Staff software engineer. I write here to work through algorithms,
+          architecture, and the craft of building software with other people.
+        </p>
+        <Link
+          href="/about"
+          className="mt-4 inline-block text-sm text-accent hover:underline"
+        >
+          More about me →
+        </Link>
+      </header>
+      <SearchablePosts posts={posts} />
+    </>
   );
 }

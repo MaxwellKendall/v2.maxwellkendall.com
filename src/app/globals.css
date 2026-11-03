@@ -3,19 +3,47 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcfcfb;
+  --foreground: #1c1c1a;
+  --muted: #5c5c57;
+  --subtle: #8a8a84;
+  --border: #e6e5e1;
+  --surface: #f3f2ef;
+  --accent: #0f766e;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #111110;
+    --foreground: #ececea;
+    --muted: #a3a39e;
+    --subtle: #75756f;
+    --border: #2a2a28;
+    --surface: #1c1c1a;
+    --accent: #2dd4bf;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.code-block code.hljs {
+  padding: 0;
+  background: transparent;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
+/* Inline code inside prose; fenced blocks are styled by the Markdown component */
+.prose :not(pre) > code {
+  @apply rounded bg-surface px-1.5 py-0.5 font-mono text-[0.85em] font-normal text-foreground;
 }

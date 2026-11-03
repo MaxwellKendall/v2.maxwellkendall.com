@@ -1,20 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import './globals.css';
-import 'highlight.js/styles/github-dark.css';
-import { Inter, Montserrat, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
-// Initialize the fonts
-const inter = Inter({ subsets: ['latin'] });
-const montserrat = Montserrat({ subsets: ['latin'] });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+});
 
 export const metadata = {
-  title: 'Full Stack Software Engineering',
+  title: {
+    default: 'Maxwell Kendall',
+    template: '%s · Maxwell Kendall',
+  },
   description:
-    'Max is a full stack software engineer. This site contains content related to his current studies.',
+    'Writing by Maxwell Kendall, a staff software engineer, on algorithms, architecture, and building software with other people.',
   icons: {
     icon: '/favicon.svg',
-    // Optional: Add different sizes for iOS/Android
     apple: '/favicon.svg',
   },
 };
@@ -25,8 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="flex flex-col min-h-screen">{children}</body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="flex min-h-screen flex-col font-sans antialiased">
+        <Navigation />
+        <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12 sm:px-6 sm:py-16">
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }
