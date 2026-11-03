@@ -1,6 +1,8 @@
 // Minimal GitHub REST client for committing posts. Needs a fine-grained token
 // scoped to this repo with "Contents: read and write" and "Deployments: read".
 
+import { readEnv } from '../env';
+
 const API = 'https://api.github.com';
 const DEFAULT_REPO = 'MaxwellKendall/v2.maxwellkendall.com';
 
@@ -15,14 +17,14 @@ export class GitHubError extends Error {
   }
 }
 
-const repo = () => process.env.GITHUB_REPO || DEFAULT_REPO;
+const repo = () => readEnv('GITHUB_REPO') || DEFAULT_REPO;
 
 async function github<T>(
   method: string,
   path: string,
   body?: unknown
 ): Promise<T | null> {
-  const token = process.env.GITHUB_TOKEN;
+  const token = readEnv('GITHUB_TOKEN');
   if (!token) throw new Error('GITHUB_TOKEN is not configured');
 
   const res = await fetch(`${API}/repos/${repo()}${path}`, {

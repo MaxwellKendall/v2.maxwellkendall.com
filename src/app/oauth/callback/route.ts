@@ -6,6 +6,7 @@ import {
   signConsent,
   verify,
 } from '@/lib/oauth/tokens';
+import { readEnv } from '@/lib/env';
 
 const GITHUB_TOKEN_URL = 'https://github.com/login/oauth/access_token';
 const GITHUB_USER_URL = 'https://api.github.com/user';
@@ -15,8 +16,8 @@ async function githubLogin(code: string, redirectUri: string) {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      client_id: process.env.GITHUB_OAUTH_CLIENT_ID,
-      client_secret: process.env.GITHUB_OAUTH_CLIENT_SECRET,
+      client_id: readEnv('GITHUB_OAUTH_CLIENT_ID'),
+      client_secret: readEnv('GITHUB_OAUTH_CLIENT_SECRET'),
       code,
       redirect_uri: redirectUri,
     }),

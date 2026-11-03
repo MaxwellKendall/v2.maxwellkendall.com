@@ -3,6 +3,7 @@
 // MCP_AUTH_SECRET, so rotating that secret revokes everything at once.
 import { createHash } from 'crypto';
 import { SignJWT, jwtVerify, JWTPayload } from 'jose';
+import { readEnv } from '../env';
 
 export const ACCESS_TOKEN_TTL_SECONDS = 60 * 60;
 const REFRESH_TOKEN_TTL = '30d';
@@ -39,7 +40,7 @@ export interface SessionClaims {
 }
 
 const secret = () => {
-  const value = process.env.MCP_AUTH_SECRET;
+  const value = readEnv('MCP_AUTH_SECRET');
   if (!value || value.length < 32) {
     throw new Error('MCP_AUTH_SECRET must be set to at least 32 characters');
   }
@@ -102,7 +103,7 @@ export const pkceChallenge = (verifier: string) =>
   createHash('sha256').update(verifier).digest('base64url');
 
 export const isAllowedUser = (login: string) => {
-  const allowed = process.env.ALLOWED_GITHUB_LOGIN;
+  const allowed = readEnv('ALLOWED_GITHUB_LOGIN');
   if (!allowed) throw new Error('ALLOWED_GITHUB_LOGIN is not configured');
   return login.toLowerCase() === allowed.toLowerCase();
 };

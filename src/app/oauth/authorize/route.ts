@@ -6,6 +6,7 @@ import {
   resourceFor,
 } from '@/lib/oauth/clients';
 import { signPending } from '@/lib/oauth/tokens';
+import { readEnv } from '@/lib/env';
 
 const GITHUB_AUTHORIZE_URL = 'https://github.com/login/oauth/authorize';
 
@@ -50,7 +51,7 @@ export async function GET(req: Request) {
     return fail('invalid_target', `Unknown resource ${resource}`);
   }
 
-  const githubClientId = process.env.GITHUB_OAUTH_CLIENT_ID;
+  const githubClientId = readEnv('GITHUB_OAUTH_CLIENT_ID');
   if (!githubClientId) {
     return fail('server_error', 'GitHub sign-in is not configured');
   }

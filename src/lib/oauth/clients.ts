@@ -1,5 +1,6 @@
 import { getPublicOrigin } from 'mcp-handler';
 import { verify, ClientClaims } from './tokens';
+import { readEnv } from '../env';
 
 export const MCP_PATH = '/api/mcp';
 
@@ -35,7 +36,7 @@ export function redirectTo(uri: string, params: Record<string, string | undefine
 }
 
 const allowedHosts = () =>
-  (process.env.OAUTH_ALLOWED_REDIRECT_HOSTS || DEFAULT_REDIRECT_HOSTS)
+  (readEnv('OAUTH_ALLOWED_REDIRECT_HOSTS') || DEFAULT_REDIRECT_HOSTS)
     .split(',')
     .map((host) => host.trim().toLowerCase())
     .filter(Boolean);
